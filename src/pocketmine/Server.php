@@ -1807,17 +1807,6 @@ class Server{
 	 * @param DataPacket $packet
 	 */
 	public static function broadcastPacket(array $players, DataPacket $packet){
-		if($packet instanceof PlayerListPacket){
-			echo "Type: ".$packet->type."\n";
-			foreach($packet->entries as $num => $playerdata){
-				foreach($playerdata as $playernum => $value){
-					if($playernum === 2){
-						echo $value."\n";
-					}
-				}
-			}
-		}
-
 		$packet->encode();
 		$packet->isEncoded = true;
 		if(Network::$BATCH_THRESHOLD >= 0 and strlen($packet->buffer) >= Network::$BATCH_THRESHOLD){
